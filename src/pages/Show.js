@@ -1,8 +1,8 @@
 import { useState } from "react"
 function Show(props) {
   const id = props.match.params.id
-  const cheeses = props.cheese
-  const cheese = cheese.find(p => p._id === id)
+  const cheeses = props.cheeses
+  const cheese = cheeses.find(p => p._id === id)
 
   // state for form
   const [editForm, setEditForm] = useState(cheese)
@@ -12,26 +12,27 @@ function Show(props) {
     setEditForm({ ...editForm, [event.target.name]: event.target.value })
   }
 
-  // handlesubmit for form
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
+    // to prevent refresh
     event.preventDefault()
-    props.updateCheese(editForm)
+    // update the person
+    props.updatePeople(editForm, cheese._id)
     // redirect people back to index
     props.history.push("/")
-  }
+}
 
   const removeCheese = () => {
-    props.deleteCheese(cheese._id)
+    props.deleteCheeses(cheese._id)
     props.history.push("/")
   }
 
   return (
-    <div className="person">
+    <div className="cheese">
       <h1>{cheese.name}</h1>
       <h2>{cheese.countryOfOrigin}</h2>
       <img src={cheese.image} alt={cheese.name} />
       <button id="delete" onClick={removeCheese}>
-        Delete
+        Delete this cheese
       </button>
       <form onSubmit={handleSubmit}>
         <input

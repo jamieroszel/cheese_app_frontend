@@ -5,7 +5,7 @@ import Show from "../pages/Show";
 
 
 function Main(props) {
-  const [cheese, setCheese] = useState(null);
+  const [cheeses, setCheeses] = useState(null);
 
   const URL = "https://react-cheese-jr.herokuapp.com/cheese/";
 
@@ -15,7 +15,7 @@ function Main(props) {
     setCheese(data);
   };
 
-  const createCheese = async (cheese) => {
+  const createCheeses = async (cheese) => {
     // make post request to create people
     await fetch(URL, {
       method: "post",
@@ -25,10 +25,10 @@ function Main(props) {
       body: JSON.stringify(cheese),
     });
     // update list of people
-    getCheese();
+    getCheeses();
   };
 
-  const updateCheese = async (cheese, id) => {
+  const updateCheeses = async (cheese, id) => {
     await fetch(URL + id, {
       method: "put",
       headers: {
@@ -36,30 +36,30 @@ function Main(props) {
       },
       body: JSON.stringify(cheese),
     })
-    getCheese()
+    getCheeses()
   }
-  const deleteCheese = async (id) => {
+  const deleteCheeses = async (id) => {
     await fetch(URL + id, {
       method: "delete",
       })
-    getCheese()
+    getCheeses()
   }
 
-  useEffect(() => getCheese(), []);
+  useEffect(() => getCheeses(), []);
 
   return (
     <main>
       <Switch>
         <Route exact path="/">
-          <Index cheese={cheese} createCheese={createCheese} />
+          <Index cheese={cheeses} createCheeses={createCheeses} />
         </Route>
         <Route
-          path="/people/:id"
+          path="/cheese/:id"
           render={(rp) => (
             <Show
-              cheese={cheese}
-              updateCheese={updateCheese}
-              deleteCheese={deleteCheese}
+              cheese={cheeses}
+              updateCheese={updateCheeses}
+              deleteCheese={deleteCheeses}
               {...rp}
             />
           )}
