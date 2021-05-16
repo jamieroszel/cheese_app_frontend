@@ -9,10 +9,10 @@ function Main(props) {
 
   const URL = "https://react-cheese-jr.herokuapp.com/cheese/";
 
-  const getCheese = async () => {
+  const getCheeses = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    setCheese(data);
+    setCheeses(data);
   };
 
   const createCheeses = async (cheese) => {
