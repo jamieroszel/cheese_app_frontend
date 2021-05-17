@@ -20,7 +20,7 @@ function Show(props) {
     props.history.push("/")
 }
 
-  const removePerson = () => {
+  const removeDog = () => {
     props.deleteDogs(dog._id)
     props.history.push("/")
   }
