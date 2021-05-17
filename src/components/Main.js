@@ -14,27 +14,27 @@ function Main(props) {
     setDogs(data);
   };
 
-  const createDogs = async (person) => {
+  const createDogs = async (dog) => {
     // make post request to create dogs
     await fetch(URL, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(person),
+      body: JSON.stringify(dog),
     });
     // update list of dogs
     getDogs();
   }
 
-  const updateDogs = async (person, id) =>{
+  const updateDogs = async (dog, id) =>{
     // make post request to create dogs
     await fetch(URL + id, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(person),
+      body: JSON.stringify(dog),
     })
     // update list of dogs
     getDogs()

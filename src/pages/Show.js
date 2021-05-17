@@ -26,7 +26,7 @@ function Show(props) {
   }
 
   return (
-    <div className="person">
+    <div className="dog">
       <h1>{dog.name}</h1>
       <h2>{dog.countryOfOrigin}</h2>
       <img src={dog.image} alt={dog.name} />
