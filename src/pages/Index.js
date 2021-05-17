@@ -1,47 +1,46 @@
-import { useState } from "react";
-import {Link} from "react-router-dom"
-
+import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function Index(props) {
   // state to hold formData
   const [newForm, setNewForm] = useState({
     name: "",
-    countryOfOrigin: "",
     image: "",
-  });
+    countryOfOrigin: "",
+  })
 
   // handleChange function for form
-  const handleChange = (event) => {
-    setNewForm({ ...newForm, [event.target.name]: event.target.value });
-  };
+  const handleChange = event => {
+    setNewForm({ ...newForm, [event.target.name]: event.target.value })
+  }
 
   // handle submit function for form
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    props.createCheeses(newForm);
+  const handleSubmit = event => {
+    event.preventDefault()
+    props.createDogs(newForm)
     setNewForm({
       name: "",
-      countryOfOrigin: "",
       image: "",
-    });
-  };
+      countryOfOrigin: "",
+    })
+  }
 
   // loaded function
   const loaded = () => {
-    return props.cheeses.map((cheese) => (
-      <div key={cheese._id} className="cheese">
-        <Link to={`/cheese/${cheese._id}`}>
-          <h1>{cheese.name}</h1>
-          </Link>
-        <img src={cheese.image} alt={cheese.name} />
-        <h3>{cheese.countryOfOrigin}</h3>
+    return props.dogs.map(dog => (
+      <div key={dog._id} className="dog">
+        <Link to={`/dogs/${dog._id}`}>
+          <h1>{dog.name}</h1>
+        </Link>
+        <img src={dog.image} alt={dog.name} />
+        <h3>{dog.countryOfOrigin}</h3>
       </div>
-    ));
-  };
+    ))
+  }
 
   const loading = () => {
-    return <h1>Loading...</h1>;
-  };
+    return <h1>Loading...</h1>
+  }
   return (
     <section>
       <form onSubmit={handleSubmit}>
@@ -63,14 +62,14 @@ function Index(props) {
           type="text"
           value={newForm.countryOfOrigin}
           name="countryOfOrigin"
-          placeholder="Country of Origin"
+          placeholder="countryOfOrigin"
           onChange={handleChange}
         />
-        <input type="submit" value="Create Cheese" />
+        <input type="submit" value="Create Dog" />
       </form>
-      {props.cheeses ? loaded() : loading()}
+      {props.dogs ? loaded() : loading()}
     </section>
-  );
+  )
 }
 
-export default Index;
+export default Index

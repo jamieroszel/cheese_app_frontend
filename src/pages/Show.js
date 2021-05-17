@@ -1,11 +1,10 @@
 import { useState } from "react"
 function Show(props) {
   const id = props.match.params.id
-  const cheeses = props.cheeses
-  const cheese = cheeses.find(p => p._id === id)
+  const dogs = props.dogs
+  const dog = dogs.find(p => p._id === id)
 
-  // state for form
-  const [editForm, setEditForm] = useState(cheese)
+  const [editForm, setEditForm] = useState(dog)
 
   // handleChange function for form
   const handleChange = event => {
@@ -15,24 +14,24 @@ function Show(props) {
   const handleSubmit = (event) => {
     // to prevent refresh
     event.preventDefault()
-    // update the person
-    props.updatePeople(editForm, cheese._id)
-    // redirect people back to index
+    // update the dog
+    props.updateDogs(editForm, dog._id)
+    // redirect dogs back to index
     props.history.push("/")
 }
 
-  const removeCheese = () => {
-    props.deleteCheeses(cheese._id)
+  const removePerson = () => {
+    props.deleteDogs(dog._id)
     props.history.push("/")
   }
 
   return (
-    <div className="cheese">
-      <h1>{cheese.name}</h1>
-      <h2>{cheese.countryOfOrigin}</h2>
-      <img src={cheese.image} alt={cheese.name} />
-      <button id="delete" onClick={removeCheese}>
-        Delete this cheese
+    <div className="person">
+      <h1>{dog.name}</h1>
+      <h2>{dog.countryOfOrigin}</h2>
+      <img src={dog.image} alt={dog.name} />
+      <button id="delete" onClick={removeDog}>
+        Delete this dog
       </button>
       <form onSubmit={handleSubmit}>
         <input
@@ -53,10 +52,10 @@ function Show(props) {
           type="text"
           value={editForm.countryOfOrigin}
           name="countryOfOrigin"
-          placeholder="Country of Origin"
+          placeholder="countryOfOrigin"
           onChange={handleChange}
         />
-        <input type="submit" value="Update Cheese" />
+        <input type="submit" value="Update Dog" />
       </form>
     </div>
   )
